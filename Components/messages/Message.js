@@ -1,7 +1,7 @@
 import React, { useState }  from 'react'
 import {  Button, TouchableHighlight, FlatList, Text, View,  } from 'react-native'
 import { WebView } from 'react-native-webview'
-import { styles } from './AppStyles.js'
+import { styles } from '../../Styles/AppStyles.js'
 
 let respond=(id,response)=>{alert(id.toString() + ":" + response)}
 

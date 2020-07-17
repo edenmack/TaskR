@@ -7,6 +7,7 @@ const color={
     attention:"orangered",
     app:"slateblue",
     appBackground:"grey",
+    approvalGreen: "#2ecc71"
   }
 
 const styles = StyleSheet.create({
@@ -21,7 +22,18 @@ const styles = StyleSheet.create({
       height: 50,
       fontSize: 28,
       padding:2,
+      fontStyle: 'italic'
       
+    },
+    AppBarLogoR: {
+      color: color.approvalGreen,
+      fontSize: 28,
+      fontStyle: 'italic',
+    },
+    buttonStack: {
+      width: '60%',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
     },
     centeredView: {
       flex: 1,
@@ -36,6 +48,11 @@ const styles = StyleSheet.create({
       padding:10,
       borderRadius:10,
       alignItems: "center",    
+    },
+    modals: {
+      flex: 1,
+      justifyContent: 'center', 
+      alignItems: 'center'
     },
     listContainer: {
       flex: 1,    
