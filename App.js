@@ -1,6 +1,6 @@
 //import { StatusBar } from 'expo-status-bar'
 import React, { useState }  from 'react'
-import { StyleSheet, Button, TouchableHighlight, FlatList, Modal, Text, View, Switch, Image, ColorPropType, } from 'react-native'
+import { StyleSheet, Button, TouchableHighlight, FlatList, Modal, Text, View, Switch, Image, ColorPropType, SafeAreaView, } from 'react-native'
 //import { WebView } from 'react-native-webview'
 import { MessageList} from './MessageList.js'
 import { color, styles } from './AppStyles.js'
@@ -11,10 +11,10 @@ import { color, styles } from './AppStyles.js'
 
 export default function App() {
   return (
-    <View style={styles.AppContainer}>
+    <SafeAreaView style={styles.AppContainer}>
       <AppHeader></AppHeader>
       <MessageList></MessageList>      
-    </View>
+    </SafeAreaView>
   );
   //<StatusBar style="auto" />
 }
