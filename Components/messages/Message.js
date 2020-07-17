@@ -1,8 +1,10 @@
 import React, { useState }  from 'react'
+
 import {  Button, TouchableHighlight, FlatList, Text, View, Image } from 'react-native'
 import { WebView } from 'react-native-webview'
 import { styles } from '../../Styles/AppStyles.js'
 //import {styles} from './Styles/AppStyles'
+
 
 let respond=(id,response)=>{alert(id.toString() + ":" + response)}
 
@@ -34,6 +36,7 @@ const Message = (props) => {
   
     let bodyCls = styles.itemBody
     let hdrCls = styles.itemHeaderExpanded
+
     let icon = require('../../assets/expand.png')
     if(!isExpanded) {
       bodyCls = styles.itemBodyHidden

@@ -2,7 +2,6 @@ import React, { useState }  from 'react'
 import { FlatList,  View, RefreshControl, } from 'react-native'
 import { Message } from './Message.js'
 import { styles } from '../../Styles/AppStyles.js'
-//import {styles} from './Styles/AppStyles'
 
 var data=[
     {key: "1", subj: "test 1", environment:"dev", color:"black", responseOptions:"Ack,Dismiss", body: `this is a test of the element <br/>with single quotes(') and double quotes(")`},
