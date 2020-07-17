@@ -1,5 +1,5 @@
 import React, { useState }  from 'react'
-import {  Button, TouchableHighlight, FlatList, Text, View,  } from 'react-native'
+import {  Button, TouchableHighlight, FlatList, Text, View, Image, } from 'react-native'
 import { WebView } from 'react-native-webview'
 import { styles } from './AppStyles.js'
 
@@ -33,11 +33,11 @@ const Message = (props) => {
   
     let bodyCls = styles.itemBody
     let hdrCls = styles.itemHeaderExpanded
-    let icon = './assets/expand.png'
+    let icon = require("./assets/collapse.png")
     if(!isExpanded) {
       bodyCls = styles.itemBodyHidden
       hdrCls = styles.itemHeader
-      icon = './assets/collapse.png'
+      icon = require("./assets/expand.png")
     }
   
     let environmentTag = ""
@@ -69,20 +69,34 @@ const Message = (props) => {
       <View style={styles.item} borderColor={props.color}>
         <TouchableHighlight 
           onPress={() => {setIsExpanded(!isExpanded);}}
-        >
-        <Text 
-          style={hdrCls}           
-          color={props.color}
-        >
+        >          
+          <View 
+            flex={1} 
+            flexDirection={"row"}
+          >     
+
+            <View width={5} flex={1}>
+              <Image
+                flex={1}
+                aspectRatio={.5}
+                resizeMode={"contain"}
+                source={icon}
+              />
+            </View>    
+
             <Text 
-            style={styles.itemEnvironment}
-            >{environmentTag}</Text>{props.subj}</Text>
-            {/* <Image
-              width={20}
-              height={20}
-              source={require(icon)}
-            /> */}
+              flex={2}
+              style={hdrCls}           
+              color={props.color}
+            >
+                <Text 
+                style={styles.itemEnvironment}
+                >{environmentTag}</Text>{props.subj}
+            </Text>  
+            <View flex={3}></View>                    
+          </View>
         </TouchableHighlight>
+        
         <View 
           style={bodyCls} 
           height={itemHeight}>
