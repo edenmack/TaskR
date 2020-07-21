@@ -22,8 +22,9 @@ const styles = StyleSheet.create({
       height: 50,
       fontSize: 28,
       padding:2,
-      fontStyle: 'italic'
-      
+      fontStyle: 'italic',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
     },
     AppBarLogoR: {
       color: color.approvalGreen,
@@ -52,7 +53,21 @@ const styles = StyleSheet.create({
     modals: {
       flex: 1,
       justifyContent: 'center', 
-      alignItems: 'center'
+      alignItems: 'center',
+    },
+    subscription: {      
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+    },
+    modalText: {
+      
+      color: color.dark,
+      height: 50,
+      fontSize: 22,
+      padding:2,
+      fontStyle: 'italic',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
     },
     listContainer: {
       flex: 1,    

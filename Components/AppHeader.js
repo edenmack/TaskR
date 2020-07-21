@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, TouchableHighlight } from 'react-native';
+import { Text, View, TouchableHighlight, Image } from 'react-native';
 import { styles } from '../Styles/AppStyles';
 import Subscriptions from '../Modals/Subscriptions';
 
@@ -24,9 +24,15 @@ const AppHeader = (props) => {
     return (
       <View style={styles.AppBar}>
         <TouchableHighlight onPress={() => setIsSettingsMode(true)}>
-          <Text style={styles.AppBar}>Task<Text style={styles.AppBarLogoR}>R</Text></Text>
+          <Image
+            flex={1}
+            aspectRatio={.5}
+            resizeMode={"contain"}
+            source={require("../assets/menu-black-18dp/2x/baseline_menu_black_18dp.png")}
+          />
         </TouchableHighlight>
-  
+        <Text style={styles.AppBar} flex={2}>Task<Text style={styles.AppBarLogoR}>R</Text></Text>
+        <View flex={3}></View>
         <Subscriptions 
           visible={isSettingsMode}
           onSave={saveSettingsHandler}

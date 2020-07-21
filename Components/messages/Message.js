@@ -34,11 +34,11 @@ const Message = (props) => {
   
     let bodyCls = styles.itemBody
     let hdrCls = styles.itemHeaderExpanded
-    let icon = require('../../assets/expand.png')
+    let icon = require("../../assets/expand_less-black-18dp/2x/baseline_expand_less_black_18dp.png")
     if(!isExpanded) {
       bodyCls = styles.itemBodyHidden
       hdrCls = styles.itemHeader
-      icon = require('../../assets/collapse.png')
+      icon = require("../../assets/expand_more-black-18dp/2x/baseline_expand_more_black_18dp.png")
     }
   
     let environmentTag = ""

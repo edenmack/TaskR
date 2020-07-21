@@ -24,22 +24,26 @@ const Subscriptions = props => {
           }}
         >
             <View style={styles.modals}>
-             <Text style={styles.AppBar}>Subscribe to Dev Tasks: </Text>
-             <Switch              
-              trackColor={{ false: color.superDark, true: color.dark }}
-              thumbColor={isDev ? color.app : color.dark}
-              ios_backgroundColor={color.light}
-              onValueChange={toggleSwitchDev}
-              value={isDev}
-            />
-              <Text style={styles.AppBar}>Subscribe to Test Tasks: </Text>
-            <Switch
-              trackColor={{ false: color.superDark, true: color.dark }}
-              thumbColor={isTest ? color.app : color.dark}
-              ios_backgroundColor={color.light}
-              onValueChange={toggleSwitchTest}
-              value={isTest}
-            />
+                <View style={styles.subscription}>
+                    <Text style={styles.modalText} backgroundColor={"white"}>Subscribe to Develop<Text style={styles.AppBarLogoR}>R</Text> Tasks: </Text>
+                    <Switch         
+                        trackColor={{ false: color.superDark, true: color.dark }}
+                        thumbColor={isDev ? color.app : color.dark}
+                        ios_backgroundColor={color.light}
+                        onValueChange={toggleSwitchDev}
+                        value={isDev}
+                    />
+                </View>
+                <View style={styles.subscription}>
+                    <Text style={styles.modalText} backgroundColor={"white"}>Subscribe to Test<Text style={styles.AppBarLogoR}>R</Text> Tasks: </Text>
+                    <Switch
+                        trackColor={{ false: color.superDark, true: color.dark }}
+                        thumbColor={isTest ? color.app : color.dark}
+                        ios_backgroundColor={color.light}
+                        onValueChange={toggleSwitchTest}
+                        value={isTest}
+                    />
+                </View>
                <View style={styles.buttonStack}>
                     <View>
                         <Button 
