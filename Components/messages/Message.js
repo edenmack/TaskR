@@ -18,10 +18,11 @@ const ResponseButtons = (props) => {
     }
     return (
       <View>
-        <FlatList data={d}
+        <FlatList 
+          data={d}
+          style={styles.itemBodyButtons}
           renderItem={({item}) => 
-            <Button 
-              style={styles.itemBodyContent} 
+            <Button                
               onPress={()=>{respond(props.id,item.response)}} 
               title={item.response}
             />}></FlatList>

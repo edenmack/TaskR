@@ -59,8 +59,13 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'space-between',
     },
-    modalText: {
-      
+    modalTextTitle:{
+      color: color.dark,
+      height: 60,
+      fontSize: 28,
+      padding:2,
+    },
+    modalText: {      
       color: color.dark,
       height: 50,
       fontSize: 22,
@@ -68,6 +73,11 @@ const styles = StyleSheet.create({
       fontStyle: 'italic',
       flexDirection: 'row',
       justifyContent: 'space-between',
+    },
+    modalTextInfo:{
+      height: 25,
+      fontSize: 11,
+      paddingBottom:2,
     },
     listContainer: {
       flex: 1,    
@@ -118,6 +128,10 @@ const styles = StyleSheet.create({
       backgroundColor: color.light,
       margin: 2,
       padding: 5,
+    },
+    itemBodyButtons: {
+      margin: 2,
+      justifyContent: 'space-between',
     },
     itemEnvironment: {
       color: color.attention,

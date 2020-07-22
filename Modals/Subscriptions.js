@@ -24,6 +24,7 @@ const Subscriptions = props => {
           }}
         >
             <View style={styles.modals}>
+                <Text style={styles.modalTextTitle}>Subscriptions</Text>
                 <View style={styles.subscription}>
                     <Text style={styles.modalText} backgroundColor={"white"}>Subscribe to Develop<Text style={styles.AppBarLogoR}>R</Text> Tasks: </Text>
                     <Switch         
@@ -34,6 +35,7 @@ const Subscriptions = props => {
                         value={isDev}
                     />
                 </View>
+                <Text style={styles.modalTextInfo}>Only select this if you are a nerd.</Text>
                 <View style={styles.subscription}>
                     <Text style={styles.modalText} backgroundColor={"white"}>Subscribe to Test<Text style={styles.AppBarLogoR}>R</Text> Tasks: </Text>
                     <Switch
@@ -44,6 +46,7 @@ const Subscriptions = props => {
                         value={isTest}
                     />
                 </View>
+                <Text style={styles.modalTextInfo}>Only select this if you are told to do so by a nerd.</Text>
                <View style={styles.buttonStack}>
                     <View>
                         <Button 
