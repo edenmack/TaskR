@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Text, View, TouchableHighlight } from 'react-native'
-import { SimpleLineIcons } from '@expo/vector-icons' //https://icons.expo.fyi/
+import { MaterialIcons } from '@expo/vector-icons' //https://icons.expo.fyi/
 import { styles } from '../Styles/AppStyles'
 import Subscriptions from '../Modals/Subscriptions'
 
@@ -24,8 +24,8 @@ const AppHeader = (props) => {
   
     return (
       <View style={styles.AppBar}>
-        <TouchableHighlight onPress={() => setIsSettingsMode(true)}>          
-          <SimpleLineIcons  flex={1} name={"menu"} size={24} color={"white"} padding={2} />
+        <TouchableHighlight flex={1} onPress={() => setIsSettingsMode(true)}>          
+          <MaterialIcons  name={"menu"} size={24} color={"white"} padding={2} />
         </TouchableHighlight>
         <Text style={styles.AppBar} flex={2}>Task<Text style={styles.AppBarLogoR}>R</Text></Text>
         <View flex={3}></View>
