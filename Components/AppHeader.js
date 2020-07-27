@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { Text, View, TouchableHighlight, Image } from 'react-native';
-import { styles } from '../Styles/AppStyles';
-import Subscriptions from '../Modals/Subscriptions';
+import React, { useState } from 'react'
+import { Text, View, TouchableHighlight } from 'react-native'
+import { SimpleLineIcons } from '@expo/vector-icons' //https://icons.expo.fyi/
+import { styles } from '../Styles/AppStyles'
+import Subscriptions from '../Modals/Subscriptions'
 
 const AppHeader = (props) => {
 
-    const [isSettingsMode, setIsSettingsMode] = useState(false); 
+    const [isSettingsMode, setIsSettingsMode] = useState(false)
   
   
     // This will exit out of the settings modal
@@ -23,13 +24,8 @@ const AppHeader = (props) => {
   
     return (
       <View style={styles.AppBar}>
-        <TouchableHighlight onPress={() => setIsSettingsMode(true)}>
-          <Image
-            flex={1}
-            aspectRatio={.5}
-            resizeMode={"contain"}
-            source={require("../assets/menu-black-18dp/2x/baseline_menu_black_18dp.png")}
-          />
+        <TouchableHighlight onPress={() => setIsSettingsMode(true)}>          
+          <SimpleLineIcons  flex={1} name={"menu"} size={24} color={"white"} padding={2} />
         </TouchableHighlight>
         <Text style={styles.AppBar} flex={2}>Task<Text style={styles.AppBarLogoR}>R</Text></Text>
         <View flex={3}></View>
@@ -43,4 +39,4 @@ const AppHeader = (props) => {
     );
   };
 
-  export default AppHeader;
+  export default AppHeader
