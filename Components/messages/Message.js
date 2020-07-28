@@ -1,19 +1,19 @@
 import React, { useState }  from 'react'
 
-import {  Button, TouchableHighlight, FlatList, Text, View } from 'react-native'
+import {  Button, TouchableHighlight, FlatList, Text, View, TextInput } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons' //https://icons.expo.fyi/
 import { WebView } from 'react-native-webview'
 import { styles } from '../../Styles/AppStyles.js'
 
 
-let respond=(id,response)=>{alert(id.toString() + ":" + response)}
+let respond=(id,response,comment)=>{alert(id.toString() + ":" + response + ":" + comment) }
 
 const ResponseButtons = (props) => {
     let d = []
     let c = 0
     for(let r of props.responseOptions.split(",")){
       //alert(r)
-      let d1 = {key:(++c).toString(), response:r,}
+      let d1 = {key:(++c).toString(), response:r}
       d.push(d1)
     }
     return (
@@ -23,7 +23,7 @@ const ResponseButtons = (props) => {
           style={styles.itemBodyButtons}
           renderItem={({item}) => 
             <Button                
-              onPress={()=>{respond(props.id,item.response)}} 
+              onPress={()=>{respond(props.id,item.response,props.comment)}} 
               title={item.response}
             />}></FlatList>
       </View>
@@ -34,6 +34,7 @@ const Message = (props) => {
     const [isExpanded, setIsExpanded] = useState(false)
     const [htmlHeight, setHtmlHeight] = useState(0)
     const [itemHeight, setItemHeight] = useState(0)
+    const [comment, setComment] = useState("")
   
     let bodyCls = styles.itemBody
     let hdrCls = styles.itemHeaderExpanded
@@ -115,9 +116,20 @@ const Message = (props) => {
               }
             }
           }></WebView>
+
+        <Text>Comment:</Text>
+        <TextInput
+              multiline
+              editable
+              placeholder={"enter comments here"}
+              value={comment}
+              onChangeText={(event)=>{setComment(event)}}
+            />
+
           <ResponseButtons 
             id={props.id} 
             responseOptions={props.responseOptions}
+            comment={comment}
           ></ResponseButtons>
         </View>
       </View>

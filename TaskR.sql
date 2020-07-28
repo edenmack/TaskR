@@ -34,6 +34,7 @@ CREATE TABLE dbo.tMessage (
 	userId int,-- FOREIGN KEY REFERENCES dbo.tUser(userId),
 	messageSetId int,-- FOREIGN KEY REFERENCES dbo.tMessageSet(messageSetId),
 	response varchar(255),
+	comment varchar(max),
 	updated datetime
 );
 
@@ -110,13 +111,14 @@ GO
 
 DROP PROCEDURE IF EXISTS sptSetResponse;
 GO
-CREATE PROCEDURE sptSetResponse
+CREATE PROCEDURE dbo.sptSetResponse
 	@messageId int,
-	@response varchar(255)
+	@response varchar(255),
+	@comment varchar(max)
 	AS
 		IF @response IS NOT NULL
 		BEGIN
-			UPDATE tMessage SET response=@response WHERE messageId=@messageId
+			UPDATE tMessage SET response=@response, comment=@comment WHERE messageId=@messageId
 			DECLARE @messageSetId int=(SELECT messageSetId FROM tMessage WHERE messageId=@messageId)
 			DECLARE @totalResponses int = (SELECT COUNT(1) FROM tMessage WHERE messageSetId=@messageSetId AND response IS NOT NULL)
 			DECLARE @total int = (SELECT COUNT(1) FROM tMessage WHERE messageSetId=@messageSetId)
@@ -135,6 +137,59 @@ CREATE PROCEDURE sptSetResponse
 		END
 
 GO
+
+DROP PROCEDURE IF EXISTS sptCheckStatus;
+GO
+CREATE PROCEDURE dbo.sptCheckStatus
+	@messageSetId int
+	AS
+		SELECT 
+			CASE
+				WHEN responseRationSatisfied=1 THEN 'Complete'
+				WHEN (expires IS NOT NULL AND expires<GETDATE()) THEN 'Expired' 
+				ELSE 'Pending'
+			END AS [Status],
+			CASE
+				WHEN majorityResponse IS NOT NULL THEN majorityResponse
+				ELSE ''
+			END AS [MajorityResponse],
+			totalResponses				
+		FROM tMessageSet 
+		WHERE messageSetId=@id
+GO
+
+DROP PROCEDURE IF EXISTS sptGetResponses;
+GO
+CREATE PROCEDURE dbo.sptGetResponses
+	@messageSetId int
+	AS
+		SELECT *
+		FROM tMessage 
+		WHERE 
+			messageSetId=@id 
+			AND response IS NOT NULL
+GO
+
+DROP PROCEDURE IF EXISTS sptSubscribeDev;
+GO
+CREATE PROCEDURE dbo.sptSubscribeDev
+	@loginName varchar(50),
+	@subscribe bit
+	AS
+		UPDATE tUser SET showDev=@subscribe WHERE loginName=@loginName
+GO
+
+DROP PROCEDURE IF EXISTS sptSubscribeTest;
+GO
+CREATE PROCEDURE dbo.sptSubscribeTest
+	@loginName varchar(50),
+	@subscribe bit
+	AS
+		UPDATE tUser SET showTest=@subscribe WHERE loginName=@loginName
+GO
+
+
+
 
 
 /*--TEST DATA
