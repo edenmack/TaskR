@@ -188,7 +188,13 @@ CREATE PROCEDURE dbo.sptSubscribeTest
 		UPDATE tUser SET showTest=@subscribe WHERE loginName=@loginName
 GO
 
-
+DROP PROCEDURE IF EXISTS sptGetCurrentSettings;
+GO
+CREATE PROCEDURE dbo.sptGetCurrentSettings
+	@loginName varchar(50)
+	AS
+		SELECT showDev, showTest FROM tUser WHERE loginName=@loginName
+GO
 
 
 

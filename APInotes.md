@@ -53,12 +53,19 @@ EXEC dbo.sptSetResponse
 	@comment                --varchar(max)
 ```
 
+- Get current subscriptions
+```SQL
+EXEC dbo.sptGetCurrentSettings
+    @loginName              --varchar(50) AD Login Name
+--returns showDev, showTest
+```
+
 - Set subscription options
 ```SQL
 EXEC dbo.sptSubscribeDev
-	@loginName,              --varchar(50)
+	@loginName,              --varchar(50) AD Login Name
 	@subscribe               --bit (1 for subscribe, 0 for unsubscibe)
 EXEC dbo.sptSubscribeTest
-	@loginName,              --varchar(50)
+	@loginName,              --varchar(50) AD Login Name
 	@subscribe               --bit (1 for subscribe, 0 for unsubscibe)
 ```
