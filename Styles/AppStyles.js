@@ -6,8 +6,10 @@ const color={
     superDark:"#555",
     attention:"orangered",
     app:"slateblue",
-    appBackground:"grey",
-    approvalGreen: "#2ecc71"
+    appBackground:"gainsboro",
+    approvalGreen: "#2ecc71",
+    dev:"green",
+    test:"yellow",
   }
 
 const styles = StyleSheet.create({
@@ -52,7 +54,7 @@ const styles = StyleSheet.create({
     },
     modals: {
       flex: 1,
-      justifyContent: 'center', 
+      justifyContent: 'flex-start', 
       alignItems: 'center',
     },
     subscription: {      
@@ -90,14 +92,17 @@ const styles = StyleSheet.create({
       //borderStyle: "solid",
       //borderColor: color.dark,
       //borderWidth: 3, 
-      margin: 10,
+      marginTop: 5,
+      marginBottom: 5,
+      marginRight:10,
+      marginLeft:10,
       backgroundColor: color.light,
       
       shadowColor: 'black',
-    shadowOpacity: 0.26,
-    shadowOffset: { width: 0, height: 2},
-    shadowRadius: 10,
-    elevation: 3,
+      shadowOpacity: 0.26,
+      shadowOffset: { width: 0, height: 2},
+      shadowRadius: 10,
+      elevation: 3,
     },
     itemHeader: {
       padding: 10,
@@ -106,6 +111,9 @@ const styles = StyleSheet.create({
       height: 60,   
       color: color.dark ,
       backgroundColor: color.light,
+      transform: [
+        { translateX: -30 }, 
+        { translateY: 0 },],
     },
     itemHeaderExpanded: {
       padding: 10,
@@ -116,7 +124,17 @@ const styles = StyleSheet.create({
       backgroundColor: color.light,
       textDecorationLine: "underline",
       textDecorationColor: color.dark,
-      textDecorationStyle: "solid",      
+      textDecorationStyle: "solid",
+      transform: [
+        { translateX: -30 }, 
+        { translateY: 0 },],   
+    },
+    itemIcon: {
+      /*transform: [
+        { translateX: 0 }, 
+        { translateY: 15 },],*/
+      //alignItems:"baseline",
+      marginLeft:"auto",
     },
     itemBody: {    
       margin: 5,
@@ -133,9 +151,19 @@ const styles = StyleSheet.create({
       margin: 2,
       justifyContent: 'space-between',
     },
+    itemBodyButton: {
+      margin:2,      
+    },
     itemEnvironment: {
       color: color.attention,
-      fontWeight: "bold",
+      //fontWeight: "bold",
+      fontFamily: "monospace",
+      width:50,
+      transform: [
+        { rotate: "90deg" }, 
+        //{ translateX: 5 }, 
+        { translateY: 10 },
+      ],
     },
     itemBodyHidden: {
       display: "none",

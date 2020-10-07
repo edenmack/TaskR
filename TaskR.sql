@@ -155,7 +155,7 @@ CREATE PROCEDURE dbo.sptCheckStatus
 			END AS [MajorityResponse],
 			totalResponses				
 		FROM tMessageSet 
-		WHERE messageSetId=@id
+		WHERE messageSetId=@messageSetId
 GO
 
 DROP PROCEDURE IF EXISTS sptGetResponses;
@@ -166,7 +166,7 @@ CREATE PROCEDURE dbo.sptGetResponses
 		SELECT *
 		FROM tMessage 
 		WHERE 
-			messageSetId=@id 
+			messageSetId=@messageSetId 
 			AND response IS NOT NULL
 GO
 

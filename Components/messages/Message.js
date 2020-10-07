@@ -17,15 +17,19 @@ const ResponseButtons = (props) => {
       d.push(d1)
     }
     return (
-      <View>
+      <View
+        style={styles.itemBodyButtons}
+      >
         <FlatList 
-          data={d}
-          style={styles.itemBodyButtons}
+          data={d}          
           renderItem={({item}) => 
-            <Button                
+          <View
+            style={styles.itemBodyButton}
+          >
+            <Button                              
               onPress={()=>{respond(props.id,item.response,props.comment)}} 
               title={item.response}
-            />}></FlatList>
+            /></View>}></FlatList>
       </View>
     )
   }
@@ -46,7 +50,7 @@ const Message = (props) => {
     }
   
     let environmentTag = ""
-    if(props.environment !== "prod")environmentTag=props.environment + ": "
+    if(props.environment !== "prod")environmentTag=props.environment
     let body = `
   <!DOCTYPE html>
   <html>
@@ -78,23 +82,32 @@ const Message = (props) => {
           <View 
             flex={1} 
             flexDirection={"row"}
+            justifyContent={"flex-start"}
+            alignItems={"center"}
           >     
 
-            <View width={5} flex={1}>
-              <MaterialIcons name={icon} size={40} color="black" />
-            </View>     
-            
+            <Text 
+              flex={1}
+              style={styles.itemEnvironment}
+            >{environmentTag}</Text>
 
             <Text 
-              flex={2}
+              flex={4}
               style={hdrCls}           
               color={props.color}
             >
-                <Text 
-                style={styles.itemEnvironment}
-                >{environmentTag}</Text>{props.subj}
+                {props.subj}
             </Text>  
-            <View flex={3}></View>                    
+            <MaterialIcons 
+                name={props.icon} 
+                size={40} 
+                color={props.color} 
+                style={styles.itemIcon}/>
+
+            {/* <View width={5} flex={4}>
+              <MaterialIcons name={icon} size={40} color="black" />
+            </View>  */}
+
           </View>
         </TouchableHighlight>
         
