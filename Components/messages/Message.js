@@ -1,6 +1,6 @@
 import React, { useState }  from 'react'
 
-import {  Button, TouchableHighlight, FlatList, Text, View, TextInput } from 'react-native'
+import { Button, TouchableHighlight, FlatList, Text, View, TextInput } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons' //https://icons.expo.fyi/
 import { WebView } from 'react-native-webview'
 import { styles } from '../../Styles/AppStyles.js'
@@ -98,12 +98,13 @@ const Message = (props) => {
             >
                 {props.subj}
             </Text>  
+            {props.icon != "" &&
             <MaterialIcons 
                 name={props.icon} 
                 size={40} 
                 color={props.color} 
                 style={styles.itemIcon}/>
-
+            }
             {/* <View width={5} flex={4}>
               <MaterialIcons name={icon} size={40} color="black" />
             </View>  */}

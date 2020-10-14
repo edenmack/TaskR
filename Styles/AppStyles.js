@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
     itemEnvironment: {
       color: color.attention,
       //fontWeight: "bold",
-      fontFamily: "monospace",
+      //fontFamily: "monospace",
       width:50,
       transform: [
         { rotate: "90deg" }, 
