@@ -11,7 +11,7 @@ let respond=(id,response,comment)=>{alert(id.toString() + ":" + response + ":" +
 const ResponseButtons = (props) => {
     let d = []
     let c = 0
-    for(let r of props.responseOptions.split(",")){
+    for(let r of props.responseOptions){
       //alert(r)
       let d1 = {key:(++c).toString(), response:r}
       d.push(d1)
@@ -121,10 +121,10 @@ const Message = (props) => {
             source={{ html: body }} javaScriptEnabled={true} 
             scrollEnabled={false} 
             onNavigationStateChange={(event)=>{
-              if(isNaN(Number(event.title))){
+              if(isNaN(Number(event.title))){               
                 setHtmlHeight(100)
                 setItemHeight(100)
-              }else{
+              }else{              
                 setHtmlHeight(Number(event.title))
                 setItemHeight(Number(event.title))
               }
@@ -135,7 +135,7 @@ const Message = (props) => {
         <TextInput
               multiline
               editable
-              placeholder={"enter comments here"}
+              placeholder={"enter comments here\n\n"}
               value={comment}
               onChangeText={(event)=>{setComment(event)}}
             />

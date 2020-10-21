@@ -17,12 +17,12 @@ namespace taskRAPI
             return v;
         }
 
-        public static string getRequestor(){return "mackej";}
-
         public static string Query(string query, string id, string requestor, string param){
             var connStr = getConfig("ConnectionStrings","default");
             
-            var sql = $"EXEC {query} @id, @requestor, @param";                      
+            System.Console.WriteLine($"EXEC {query} '{requestor}','{id}','{param}'");
+
+            var sql = $"EXEC {query} @requestor, @id, @param";                      
             var jsonResult = new System.Text.StringBuilder();  
 
             using(var conn = new SqlConnection(connStr)){                

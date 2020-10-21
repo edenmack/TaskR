@@ -25,10 +25,12 @@ namespace taskRAPI.Controllers
         [HttpGet("{id}/Status")]
         public ActionResult<string> Get(string id)
         {
+            string apiKey = Request.Headers.TryGetValue("X-API-Key", out var values) ? values[0] : "";
+
             Response.ContentType = "application/json";
             Response.StatusCode = 200;
 
-            var jsonResult=Database.Query("sptCheckStatus",id,Database.getRequestor(),"");
+            var jsonResult=Database.Query("sptCheckStatus",id,apiKey,"");
             
             return Content(jsonResult,"application/json");            
         }
@@ -39,10 +41,12 @@ namespace taskRAPI.Controllers
         [HttpGet("{id}/Response")]
         public ActionResult<string> GetResponse(string id)
         {
+            string apiKey = Request.Headers.TryGetValue("X-API-Key", out var values) ? values[0] : "";
+
             Response.ContentType = "application/json";
             Response.StatusCode = 200;
 
-            var jsonResult=Database.Query("sptGetResponses",id,Database.getRequestor(),"");
+            var jsonResult=Database.Query("sptGetResponses",id,apiKey,"");
             
             return Content(jsonResult,"application/json");            
         }
@@ -54,8 +58,10 @@ namespace taskRAPI.Controllers
         [HttpPost]
         public ActionResult<string> Post([FromBody] object content)
         {        
+            string apiKey = Request.Headers.TryGetValue("X-API-Key", out var values) ? values[0] : "";
+
             var jsonRequest = content.ToString();
-            var MessageSetId = Database.Query("sptCreateMessageSet","",Database.getRequestor(),jsonRequest);
+            var MessageSetId = Database.Query("sptCreateMessageSet","",apiKey,jsonRequest);
 
             Response.ContentType = "application/json";
             if(string.IsNullOrEmpty(MessageSetId))

@@ -23,8 +23,9 @@ namespace taskRAPI.Controllers
         [HttpGet("WhoAmI")]
         public ActionResult<string> GetMe()
         {                        
-            var userName=Database.getRequestor();
-            var jsonResult = Database.Query("sptGetCurrentSettings",userName,userName,"");
+            string apiKey = Request.Headers.TryGetValue("X-API-Key", out var values) ? values[0] : "";
+
+            var jsonResult = Database.Query("sptGetCurrentSettings","",apiKey,"");
             Response.ContentType = "application/json";
             Response.StatusCode = 200;
             return Content(jsonResult,"application/json");
@@ -33,7 +34,9 @@ namespace taskRAPI.Controllers
         [HttpGet]
         public ActionResult<string> GetAll()
         {
-            var jsonResult = Database.Query("sptGetAllUsers","",Database.getRequestor(),"");
+            string apiKey = Request.Headers.TryGetValue("X-API-Key", out var values) ? values[0] : "";            
+
+            var jsonResult = Database.Query("sptGetAllUsers","",apiKey,"");
             Response.ContentType = "application/json";
             Response.StatusCode = 200;
             return Content(jsonResult,"application/json");
@@ -45,10 +48,12 @@ namespace taskRAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult<string> Get(string id)
         {
+            string apiKey = Request.Headers.TryGetValue("X-API-Key", out var values) ? values[0] : "";
+
             Response.ContentType = "application/json";
             Response.StatusCode = 200;
 
-            var jsonResult=Database.Query("sptGetCurrentSettings",id,Database.getRequestor(),"");
+            var jsonResult=Database.Query("sptGetCurrentSettings",id,apiKey,"");
 
             return Content(jsonResult,"application/json");            
         }
@@ -60,8 +65,10 @@ namespace taskRAPI.Controllers
         [HttpPatch("{id}")]
         public ActionResult<string> Patch(string id, [FromBody] object content)
         {        
+            string apiKey = Request.Headers.TryGetValue("X-API-Key", out var values) ? values[0] : "";
+
             var jsonRequest = content.ToString();
-            var jsonResult = Database.Query("sptUpdateSettings",id,Database.getRequestor(),jsonRequest);
+            var jsonResult = Database.Query("sptUpdateSettings",id,apiKey,jsonRequest);
 
             Response.ContentType = "application/json";
             Response.StatusCode = 202;
@@ -76,12 +83,14 @@ namespace taskRAPI.Controllers
         [HttpPost]
         public ActionResult<string> Post([FromBody] object content)
         {
+            string apiKey = Request.Headers.TryGetValue("X-API-Key", out var values) ? values[0] : "";
+
             var jsonRequest = content.ToString();
 
             Response.ContentType = "application/json";
             Response.StatusCode = 202;
 
-            var UserId = Database.Query("sptCreateUser","",Database.getRequestor(),jsonRequest);
+            var UserId = Database.Query("sptCreateUser","",apiKey,jsonRequest);
 
             Response.ContentType = "application/json";
             if(string.IsNullOrEmpty(UserId))

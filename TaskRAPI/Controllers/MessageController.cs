@@ -24,10 +24,16 @@ namespace taskRAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult<string> Get(string id)
         {
+            string apiKey = Request.Headers.TryGetValue("X-API-Key", out var values) ? values[0] : "";
+
+
+            //System.Console.WriteLine($"getting messages for {id}");
+            //System.Console.WriteLine($"request from {apiKey}");
+
             Response.ContentType = "application/json";
             Response.StatusCode = 200;
 
-            var jsonResult=Database.Query("sptGetMessages",id,Database.getRequestor(),"");
+            var jsonResult=Database.Query("sptGetMessages",id,apiKey,"");
 
             return Content(jsonResult,"application/json");            
         }
@@ -39,8 +45,10 @@ namespace taskRAPI.Controllers
         [HttpPatch("{id}")]
         public ActionResult<string> Patch(string id, [FromBody] object content)
         {        
+            string apiKey = Request.Headers.TryGetValue("X-API-Key", out var values) ? values[0] : "";
+
             var jsonRequest = content.ToString();
-            var statusCode = Database.Query("sptSetResponse",id,Database.getRequestor(),jsonRequest);
+            var statusCode = Database.Query("sptSetResponse",id,apiKey,jsonRequest);
 
             Response.ContentType = "application/json";
             Response.StatusCode = int.Parse(statusCode);
