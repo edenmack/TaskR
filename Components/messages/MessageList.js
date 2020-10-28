@@ -5,7 +5,6 @@ import { styles } from '../../Styles/AppStyles.js'
 import { apiConfig, testData } from '../../config/config.js'
 import Axios from 'axios'
 
-
 const instance = Axios.create({
   baseURL: apiConfig.testUrl,
   timeout: 1000,

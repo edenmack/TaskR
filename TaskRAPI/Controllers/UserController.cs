@@ -19,6 +19,14 @@ namespace taskRAPI.Controllers
         #region HTTP Verbs
 
         
+        [HttpGet("RequestKey")]
+        public ActionResult<string> GetKey(string id)
+        {
+            var message = $"[{{\"message\":\"A key will be sent to the eMail account associated with {id}\"}}]";
+            Response.ContentType = "application/json";
+            Response.StatusCode = 200;
+            return Content(message,"application/json");
+        }
 
         [HttpGet("WhoAmI")]
         public ActionResult<string> GetMe()

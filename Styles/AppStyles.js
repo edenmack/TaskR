@@ -57,6 +57,12 @@ const styles = StyleSheet.create({
       justifyContent: 'flex-start', 
       alignItems: 'center',
     },
+    modalSection: {
+      padding: 10,
+      margin: 10,
+      borderBottomColor: "black",
+      borderBottomWidth: 2,
+    },
     subscription: {      
       flexDirection: 'row',
       justifyContent: 'space-between',
